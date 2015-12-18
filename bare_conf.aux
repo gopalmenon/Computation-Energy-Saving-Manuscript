@@ -4,12 +4,60 @@
 \citation{whitney}
 \citation{whitney}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-A}}Data Center Energy Consumption}{1}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Estimated u.s. data center electricity consumption by market segment (2011) \cite  {whitney}}}{1}}
 \newlabel{tab:table1}{{I}{1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Data Center Efficiency \cite  {whitney}}}{1}}
 \newlabel{DataCenterEfficiency}{{1}{1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Data Center Usage \cite  {whitney}}}{1}}
 \newlabel{DataCenterUsage}{{2}{1}}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Growth of processor clock rates over time (log scale). This graph shows a dramatic halt by 2005 due to the power wall, although current processors are available over a diverse range of clock frequencies. \cite  {mccool}}}{2}}
+\newlabel{ClockSpeed}{{3}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-B}}Problem Statement}{2}}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Graph of processor total power consumption (log scale). The maximum power consumption of processors saw steady growth for nearly two decades before the multicore era. The inability to dissipate heat with air cooling not only brought this growth to a halt but increased interest in reduced power consumption, greater efficiencies, and mobile operation created more options at lower power as well. \cite  {mccool}}}{3}}
+\newlabel{CpuPower}{{4}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The number of cores and hardware threads per processor was one until around 2004, when growth in hardware threads emerged as the trend instead of growth in clock rate. \cite  {mccool}}}{3}}
+\newlabel{CpuCores}{{5}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Growth in data processing widths (log scale), measured as the number of bits in registers over time. At first the width of scalar elements grew, but now the number of elements in a register is growing with the addition of vector (SIMD) instructions that can specify the processing of multiple scalar elements at once. \cite  {mccool}}}{3}}
+\newlabel{DataWidth}{{6}{3}}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Parallel programming models supported by Intel. A choice of approaches is available, including pre-optimized parallel libraries; standards such as MPI, Coarray Fortran, OpenMP, and OpenCL; dynamic data-parallel virtual machines such as ArBB; domain-specific languages targeting SPMD vector parallelism such as ISPC; coordination languages such as CnC; and Cilk Plus and TBB. \cite  {mccool}}}{4}}
+\newlabel{ParallelModels}{{7}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-C}}Parallel Programming Models}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-D}}Speedup and Amdahl\textquotesingle s Law}{4}}
+\newlabel{Speedup}{{1}{4}}
+\newlabel{Efficiency}{{2}{4}}
+\newlabel{SerialExecTime}{{3}{4}}
+\newlabel{ParallelExecTime}{{4}{4}}
+\newlabel{AmdahlSpeedup1}{{5}{4}}
+\newlabel{SerialPart}{{6}{4}}
+\newlabel{ParallelPart}{{7}{4}}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\citation{mccool}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Amdahl?s Law. Speedup is limited by the non-parallelizable serial portion of the work. \cite  {mccool}}}{5}}
+\newlabel{AmdahlsLaw}{{8}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Amdahl?s Law: speedup. The scalability of parallelization is limited by the non-parallelizable (serial) portion of the workload. The serial fraction is the percentage of code that is not parallelized. \cite  {mccool}}}{5}}
+\newlabel{AmdahlsLawGraph}{{9}{5}}
+\newlabel{AmdahlSpeedup2}{{8}{5}}
+\newlabel{AmdahlSpeedup3}{{9}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-E}}Opportunity}{5}}
+\newlabel{PowerConsumption}{{10}{5}}
+\newlabel{PowerEquation}{{11}{5}}
 \bibcite{whitney}{1}
 \bibcite{woo}{2}
 \bibcite{ribic}{3}
@@ -17,18 +65,19 @@
 \bibcite{nanz}{5}
 \bibcite{wilson}{6}
 \bibcite{cebrian}{7}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-A}}Problem Statement}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-B}}Contributions}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}MOTIVATION AND BACKGROUND}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Motivation}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Technologies Used}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}EXPERIMENTS}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Subjects}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Experimental Setup}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Experimental Results}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Threats to Validity}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}DISCUSSION}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Results Analysis}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}RELATED WORK}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}CONCLUSION/SUMMARY}{2}}
-\@writefile{toc}{\contentsline {section}{References}{2}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Running Fewer Cores Faster. The table shows how the maximum core frequency for an Intel core i5-2500T chip depends on the number of active cores. The last column shows the parallel efficiency over all four cores required to match the speed of using only one active core. \cite  {mccool}}}{6}}
+\newlabel{tab:table2}{{II}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-F}}Contributions}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}MOTIVATION AND BACKGROUND}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Motivation}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Technologies Used}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}EXPERIMENTS}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Subjects}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Experimental Setup}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Experimental Results}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Threats to Validity}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}DISCUSSION}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Results Analysis}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}RELATED WORK}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}CONCLUSION/SUMMARY}{6}}
+\@writefile{toc}{\contentsline {section}{References}{6}}

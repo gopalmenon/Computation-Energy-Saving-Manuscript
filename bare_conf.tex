@@ -118,6 +118,9 @@
 \usepackage{mathtools}
 \usepackage{gensymb}
 \usepackage{xcolor,colortbl}
+\usepackage{csquotes}
+\usepackage{textcomp}
+
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
@@ -390,6 +393,9 @@ Email: gopal.menon@aggiemail.usu.edu}
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
+
+\subsection{Data Center Energy Consumption}
+
 Data centers are the backbone of the modern economy \cite{whitney}, from the server roomsthat power small to medium-sized organizations, to the enterprise data centersthat support american corporations, to the server farms that run cloud computing services hosted by amazon, Facebook, Google, and others. However, the explosion of digital content, big data, e-commerce, and Internet traffic is also making data centers one of the fastest-growing users of electricity in developed countries, and one of the key drivers in the construction of new power plants in the united states.\\
 
 While most media and public attention focuses on the largest data centers that power so-called cloud computing operations - companies that provide web-based and other Internet services to consumers and businesses?these hyper-scale cloud computing data centers represent only a small fraction of data center energy consumption in the united states.\\
@@ -439,12 +445,225 @@ Total (rounded)   & 12.2 & 100\% & 76.4\\
 \end{table}
 
 The estimated energy consumption by market segment for the year 2011 is shown in table \ref{tab:table1}. As can be seen, the big cloud computing companies are very energy efficient and consume less that 5\% of the total energy consumed. 95\% of the energy is consumed by small, medium, corporate and multi-tenant operations.
+
 \subsection{Problem Statement}
+
+Until 2004, along with the increase in the number of transistors on a chip as per Moore\textquotesingle s law, there was also a rise in switching speed of the transistors \cite{mccool}. This translated into improved performance of microprocessors through a steady rise in their clock speeds.\\
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/ClockSpeed.png}
+\caption{Growth of processor clock rates over time (log scale). This graph shows a dramatic halt by 2005 due to the power wall, although current processors are available over a diverse range of clock frequencies. \cite{mccool}}
+\label{ClockSpeed}
+\end{figure}
+
+From 1973 to 2003, clock rates increased by three orders of magnitude, from about 1 MHz in 1973 to 1 GHz in 2003. However, as is clear from figure \ref{ClockSpeed} clock rates have now ceased to grow and are now generally in the 3 GHz range. In 2005, three factors converged to limit the growth in performance of single cores and shift new processor designs to the use of multiple cores \cite{mccool}. These are known as the \enquote{three walls}:
+
+\begin{enumerate}
+\item \textbf{Power wall:} Unacceptable growth in power usage with clock rate. 
+\item \textbf{Instruction-level parallelism (ILP) wall:} Limits to available low-level parallelism. 
+\item \textbf{Memory wall:} A growing discrepancy of processor speeds relative to memory speeds.
+\end{enumerate}
+
+The power wall results because power consumption (and heat generation) increases non-linearly as the clock rate increases. Increasing clock rates any further will exceed the power density that can be dealt with by air cooling, and also results in power-inefficient computation.\\
+
+The second wall is the instruction-level parallelism (ILP) wall. Many programmers would like parallelization to somehow be done automatically. The fact is that automatic parallelization is already being done at the instruction level, and has been done for decades, but has reached its limits. Hardware is naturally parallel, and modern processors typically include a large amount of circuitry to extract available parallelism from serial instruction streams. LP can only deliver constant factors of speedup and cannot deliver continuously scaling performance over time.
+
+Programming has long been done primarily as if computers were serial machines. Meanwhile, computer architects (and compiler writers) worked diligently to find ways to automatically extract parallelism, via ILP, from their code. For 40 years, it was possible to maintain this illusion of a serial programming model and write reasonably efficient programs while largely ignoring the true parallel nature of hardware. However, the point of decreasing returns has been passed with ILP techniques, and most computer architects believe that these techniques have reached their limit. The ILP wall reflects the fact that the automatically extractable low-level parallelism has already been used up.\\
+
+The memory wall results because off-chip memory rates have not grown as fast as on-chip computation rates. This is due to several factors, including power and the number of pins that can be easily incorporated into an integrated package. Despite recent advances, such as double-data-rate (DDR) signaling, off-chip communication is still relatively slow and power-hungry. Many of the transistors used in today\textquotesingle s processors are for cache, a form of on-chip memory that can help with this problem. However, the performance of many applications is fundamentally bounded by memory performance, not compute performance. Many programmers have been able to ignore this due to the effectiveness of large caches for serial processors. However, for parallel processors, interprocessor communication is also bounded by the memory wall, and this can severely limit scalability. Actually, there are two problems with memory (and communication): latency and bandwidth . Bandwidth (overall data rate) can still be scaled in several ways, such as optical interconnections, but latency (the time between when a request is submitted and when it is satisfied) is subject to fundamental limits, such as the speed of light. Fortunately latency can be hidden?given sufficient additional parallelism, above and beyond that required to satisfy multiple computational units. So the memory wall has two effects: Algorithms need to be structured to avoid memory access and communication as much as possible, and fundamental limits on latency create even more requirements for parallelism.\\
+
+In summary, in order to achieve increasing performance over time for each new processor generation, you cannot depend on rising clock rates, due to the power wall. You also cannot depend on automatic mechanisms to find (more) parallelism in na?ve serial code, due to the ILP wall. To achieve higher performance, you now have to write explicitly parallel programs. And finally, when you write these parallel programs, the memory wall means that you also have to seriously consider communication and memory access costs and may even have to use additional parallelism to hide latency. Instead of using the growing number of transistors predicted by Moore\textquotesingle s Law for ways to maintain the \enquote{serial processor illusion}, architects of modern processor designs now provide multiple mechanisms for explicit parallelism. However, you must use them, and use them well, in order to achieve performance that will continue to scale over time.\\
+The resulting trend in hardware is clear: More and more parallelism at a hardware level will become available for any application that is written to utilize it. However, unlike rising clock rates, non-parallelized application performance will not change without active changes in programming. The \enquote{free lunch} of automatically faster serial applications through faster microprocessors has ended. The new \enquote{free lunch} requires scalable parallel programming. The good news is that if you design a program for scalable parallelism, it will continue to scale as processors with more parallelism become available.\\
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/CpuPower.png}
+\caption{Graph of processor total power consumption (log scale). The maximum power consumption of processors saw steady growth for nearly two decades before the multicore era. The inability to dissipate heat with air cooling not only brought this growth to a halt but increased interest in reduced power consumption, greater efficiencies, and mobile operation created more options at lower power as well. \cite{mccool}}
+\label{CpuPower}
+\end{figure}
+
+Figure \ref{CpuPower}  shows a graph of total power consumption over time. After decades of steady increase in power consumption, the so-called power wall was hit about 2004. Above around 130W, air cooling is no longer practical. Arresting power growth required that clock rates stop climbing. From this chart we can see that modern processors now span a large range of power consumption, with the availability of lower power parts driven by the growth of mobile and embedded computing.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/CpuCores.png}
+\caption{The number of cores and hardware threads per processor was one until around 2004, when growth in hardware threads emerged as the trend instead of growth in clock rate. \cite{mccool}}
+\label{CpuCores}
+\end{figure}
+
+The resulting trend toward explicit parallelism mechanisms is obvious looking at figure \ref{CpuCores}, which plots the sudden rise in the number of hardware threads after 2004. It is common to refer to hardware parallelism as processor cores and to stress multicore. But it is more precise to speak of hardware threads, since some cores can execute more than one thread at a time. Both are shown in the graph.This date aligns with the halt in the growth in clock rate. The power problem was arrested by adding more cores and more threads in each core rather than increasing the clock rate. This ushered in the multicore era, but using multiple hardware threads requires more software changes than prior changes. During this time vector instructions were added as well, and these provide an additional, multiplicative form of explicit parallelism. Vector parallelism can be seen as an extension of data width parallelism, since both are related to the width of hardware registers and the amount of data that can be processed with a single instruction. A measure of the growth of data width parallelism is shown in figure \ref{DataWidth}. While data width parallelism growth predates the halt in the growth of clock rates, the forces driving multicore parallelism growth are also adding motivation to increase data width. While some automatic parallelization (including vectorization ) is possible, it has not been universally successful. Explicit parallel programming is generally needed to fully exploit these two forms of hardware parallelism capabilities.\\
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/DataWidth.png}
+\caption{Growth in data processing widths (log scale), measured as the number of bits in registers over time. At first the width of scalar elements grew, but now the number of elements in a register is growing with the addition of vector (SIMD) instructions that can specify the processing of multiple scalar elements at once. \cite{mccool}}
+\label{DataWidth}
+\end{figure}
+
+Additional hardware parallelism will continue to be motivated by Moore\textquotesingle s Law coupled with power constraints. This will lead to processor designs that are increasingly complex and diverse. Proper abstraction of parallel programming methods is necessary to be able to deal with this diversity and to deal with the fact that Moore\textquotesingle s Law continues unabated, so the maximum number of cores (and the diversity of processors) will continue to increase.\\
+
+\subsection{Parallel Programming Models}
+
+Unfortunately, none of the most popular programming languages in use today was designed for parallel programming. However, since a large amount of code has already been written in existing serial languages, practically speaking it is necessary to find an evolutionary path that extends existing programming practices and tools to support parallelism. Broadly speaking, while enabling dependable results, parallel programming models should have the following properties:\\
+
+\begin{itemize}
+\item \textbf{Performance:} Achievable, scalable, predictable, and tunable. It should be possible to predictably achieve good performance and to scale that performance to larger systems.
+\item \textbf{Productivity:} Expressive, composable, debuggable, and maintainable. Programming models should be complete and it should be possible to directly and clearly express efficient implementations for a suitable range of algorithms. Observability and predictability should make it possible to debug and maintain programs. 
+\item \textbf{Portability:} Functionality and performance, across operating systems and compilers. Parallel programming models should work on a range of targets, now and into the future.
+\end{itemize}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/ParallelModels.png}
+\caption{Parallel programming models supported by Intel. A choice of approaches is available, including pre-optimized parallel libraries; standards such as MPI, Coarray Fortran, OpenMP, and OpenCL; dynamic data-parallel virtual machines such as ArBB; domain-specific languages targeting SPMD vector parallelism such as ISPC; coordination languages such as CnC; and Cilk Plus and TBB. \cite{mccool}}
+\label{ParallelModels}
+\end{figure}
+
+Figure \ref{ParallelModels} shows the parallel programming models supported by Intel.
+
+\subsection{Speedup and Amdahl\textquotesingle s Law}
+
+Two important metrics related to performance and parallelism are \textbf{speedup} and \textbf{efficiency}. Speedup compares the latency for solving the identical computational problem on one hardware unit (\enquote{worker}) versus on $P$ hardware units:
+
+ \begin{equation}\label{Speedup}
+speedup = S_P = \frac{T_1}{T_P}
+\end{equation}
+
+where $T_1$ is the latency of the program with one worker and $T_P$ is the latency on $P$ workers.\\
+
+\textbf{Efficiency} is speedup divided by the number of workers:
+
+ \begin{equation}\label{Efficiency}
+efficiency = \frac{S_P}{P} = \frac{T_1}{P T_P}
+\end{equation}
+
+Efficiency measures return on hardware investment. Ideal efficiency is 1 (often reported as $100\%$), which corresponds to a linear speedup, but many factors can reduce efficiency below this ideal.
+
+An algorithm that runs $P$ times faster on $P$ processors is said to exhibit linear speedup . Linear speedup is rare in practice, since there is extra work involved in distributing work to processors and coordinating them. In addition, an optimal serial algorithm may be able to do less work overall than an optimal parallel algorithm for certain problems, so the achievable speedup may be sublinear in $P$ , even on theoretical ideal machines. Linear speedup is usually considered optimal since we can serialize the parallel algorithm, as noted above, and run it on a serial machine with a linear slowdown as a worst-case baseline.\\
+
+Amdahl said that the execution time $T_1$ of a program falls into two categories: 
+\begin{itemize}
+\item Time spent doing non-parallelizable serialwork 
+\item Time spent doing parallelizable work \\
+\end{itemize}
+
+Call these $W_{ser}$ and $W_{par}$, respectively. Given $P$ workers available to do the parallelizable work, the times for sequential execution and parallel execution are:
+
+ \begin{equation}\label{SerialExecTime}
+T_1 = W_{ser} + W_{par}
+\end{equation}
+
+ \begin{equation}\label{ParallelExecTime}
+T_P \geq W_{ser} + \frac{W_{par}}{P}
+\end{equation}
+
+Substituting these equations into the definition of speedup in equation \ref{Speedup} gives us:
+
+ \begin{equation}\label{AmdahlSpeedup1}
+S_P \leq \frac{W_{ser} + W_{par}}{W_{ser} + \frac{W_{par}}{P}}
+\end{equation}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/AmdahlsLaw.png}
+\caption{Amdahl?s Law. Speedup is limited by the non-parallelizable serial portion of the work. \cite{mccool}}
+\label{AmdahlsLaw}
+\end{figure}
+
+Figure \ref{AmdahlsLaw} shows this bound on speedup. Let $f$ be the non-parallelizable serial fraction of the total work. Then the following equalities hold:
+
+ \begin{equation}\label{SerialPart}
+W_{ser} = f T_1
+\end{equation}
+
+ \begin{equation}\label{ParallelPart}
+W_{par} = (1 - f) T_1
+\end{equation}
+
+If we substitute these into equation \ref{AmdahlSpeedup1}, we get
+
+ \begin{equation}\label{AmdahlSpeedup2}
+S_P \leq \frac{1}{f+\frac{(1-f)}{P}}
+\end{equation}
+
+When the number of processors is infinite, the speedup becomes
+
+ \begin{equation}\label{AmdahlSpeedup3}
+S_{\infty} \leq \frac{1}{f}
+\end{equation}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/AmdahlsLawGraph.png}
+\caption{Amdahl?s Law: speedup. The scalability of parallelization is limited by the non-parallelizable (serial) portion of the workload. The serial fraction is the percentage of code that is not parallelized. \cite{mccool}}
+\label{AmdahlsLawGraph}
+\end{figure}
+
+Speedup is limited by the fraction of the work that is not parallelizable, even using an infinite number of processors. If $10\%$ of the application cannot be parallelized, then the maximum speedup is $10 ×$. If $1\%$ of the application cannot be parallelized, then the maximum speedup is $100 ×$. In practice, an infinite number of processors is not available. With fewer processors, the speedup may be reduced, which gives an upper bound on the speedup. Amdahl\textquotesingle s Law is graphed in figure \ref{AmdahlsLawGraph}, which shows the bound for various values of $f$ and $P$. For example, observe that even with $f = 0.001$ (that is, only $0.1\%$ of the application is serial) and $P = 2048$, a program\textquotesingle s speedup is limited to $672 ×$.
+
+\subsection{Opportunity}
+
+Parallelization can reduce power consumption. CMOS is the dominant circuit technology for current computer hardware. CMOS power consumption is the sum of dynamic power consumption and static power consumption \cite{mccool}. For a circuit supply voltage $V$ and operating frequency $f$, CMOS dynamic power dissipation is governed by the proportion
+
+ \begin{equation}\label{PowerConsumption}
+P_{dynamic} \propto V^2 f
+\end{equation}
+
+The frequency dependence is actually more severe than the equation suggests, because the highest frequency at which a CMOS circuit can operate is roughly proportional to the voltage. Thus dynamic power varies as the cube of the maximum frequency. Static power consumption is nominally independent of frequency but is dependent on voltage. The relation is more complex than for dynamic power, but, for sake of argument, assume it varies cubically with voltage. Since the necessary voltage is proportional to the maximum frequency, the static power consumption varies as the cube of the maximum frequency, too. Under this assumption we can use a simple overall model where the total power consumption varies by the cube of the frequency.\\
+
+Suppose that parallelization speeds up an application by $1.5 ×$ on two cores. You can use this speedup either to reduce latency or reduce power. If your latency requirement is already met, then reducing the clock rate of the cores by $1.5 ×$ will save a significant amount of power. Let $P_1$ be the power consumed by one core running the serial version of the application. Then the power consumed by two cores running the parallel version of the application will be given by: 
+
+ \begin{equation}\label{PowerEquation}
+ \begin{aligned}
+P_2 & = 2 (\frac{1}{1.5})^3 P_1\\
+& \approx 0.6 P_1 
+\end{aligned}
+\end{equation}
+
+where the factor of 2 arises from having two cores. Using two cores running the parallelized version of the application at the lower clock rate has the same latency but uses (in this case) $40\%$ less power. Unfortunately, reality is not so simple. Current chips have so many transistors that frequency and voltage are already scaled down to near the lower limit just to avoid overheating, so there is not much leeway for raising the frequency. For example, Intel Turbo Boost Technology enables cores to be put to sleep so that the power can be devoted to the remaining cores while keeping the chip within its thermal design power limits. Table \ref{tab:table2} shows an example. Still, the table shows that even low parallel efficiencies offer more performance on this chip than serial execution.\\
+
+\begin{table}[h!]
+\centering
+\caption{Running Fewer Cores Faster. The table shows how the maximum core frequency for an Intel core i5-2500T chip depends on the number of active cores. The last column shows the parallel efficiency over all four cores required to match the speed of using only one active core. \cite{mccool}}
+\label{tab:table2}
+\begin{tabular}{ |r|r|r| } 
+ \hline
+\rowcolor{LightCyan}
+ Acive Cores & Maximum Frequency (GHz) & Breakeven Efficiency \\ 
+ \hline
+ 4 & 2.4 & 34\% \\ 
+ \hline
+ 3 & 2.8 & 39\% \\ 
+ \hline
+ 2 & 3.2 & 52\%\\
+ \hline
+1 & 3.3 & 100\%\\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+Another way to save power is to \enquote{race to sleep}. In this strategy, we try to get the computation done as fast as possible (with the lowest latency) so that all the cores can be put in a sleep state that draws very little power. This approach is attractive if a significant fraction of the wakeful power is fixed regardless of how many cores are running. Especially in mobile devices, parallelism can be used to reduce latency. This reduces the time the device, including its display and other components, is powered up. This not only improves the user experience but also reduces the overall power consumption for performing a user\textquotesingle s task: a win-win.
+
 \subsection{Contributions}
 
 \section{MOTIVATION AND BACKGROUND}
 \subsection{Motivation}
 \subsection{Technologies Used}
+
+The Threading Building Blocks (TBB) programming model has been selected for the purpose of this project. TBB supports parallelism based on a tasking model. It provides the following features: 
+
+\begin{itemize}
+\item Template library supporting both regular and irregular parallelism 
+\item Direct support for a variety of parallel patterns, including map, fork-join, task graphs, reduction, scan, and pipelines 
+\item Efficient work-stealing load balancing 
+\item A collection of thread-safe data structures 
+\item Efficient low-level primitives for atomic operations and memory allocation 
+\end{itemize}
+
+TBB is a library, not a language extension, and thus can be used with with any compiler supporting ISO C++. Because of that, TBB uses C++ features to implement its ?syntax.? TBB requires the use of function objects (also known as functors ) to specify blocks of code to run in parallel. These were somewhat tedious to specify in C++98. However, the C++11 addition of lambda expressions greatly simplifies specifying these blocks of code, so that is the style used in this book. TBB relies on templates and generic programming. Generic programming means that algorithms are written with the fewest possible assumptions about data structures, which maximizes potential for reuse. The C++ Standard Template Library (STL) is a good example of generic programming in which the interfaces are specified only by requirements on template types and work across a broad range of types that meet those requirements. TBB follows a similar philosophy. Like Cilk Plus, TBB is based on programming in terms of tasks, not threads. This allows it to reduce overhead and to more efficiently manage resources. As with Cilk Plus, TBB implements a common thread pool shared by all tasks and balances load via work-stealing. Use of this model allows for nested parallelism while avoiding the problem of over-subscription. The TBB implementation generally avoids global locks in its implementation. In particular, there is no global task queue and the memory allocator is lock free. This allows for much more scalability. As discussed later, global locks effectively serialize programs that could otherwise run in parallel. Individual components of TBB may also be used with other parallel programming models. It is common to see the TBB parallel memory allocator used with Cilk Plus or OpenMP programs, for example.\\
 
 \section{EXPERIMENTS}
 \subsection{Subjects}
