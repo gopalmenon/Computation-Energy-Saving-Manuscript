@@ -120,6 +120,7 @@
 \usepackage{xcolor,colortbl}
 \usepackage{csquotes}
 \usepackage{textcomp}
+\usepackage{listings}
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
@@ -644,7 +645,7 @@ where the factor of 2 arises from having two cores. Using two cores running the 
  \hline
 1 & 3.3 & 100\%\\
 \hline
-\end{tabular}
+\end{tabular}PowerConsumption
 \end{table}
 
 Another way to save power is to \enquote{race to sleep}. In this strategy, we try to get the computation done as fast as possible (with the lowest latency) so that all the cores can be put in a sleep state that draws very little power. This approach is attractive if a significant fraction of the wakeful power is fixed regardless of how many cores are running. Especially in mobile devices, parallelism can be used to reduce latency. This reduces the time the device, including its display and other components, is powered up. This not only improves the user experience but also reduces the overall power consumption for performing a user\textquotesingle s task: a win-win.
@@ -703,7 +704,7 @@ The following computational intensive processes were used to evaluate parallel p
 
 The Map and Map-Reduce patterns were used for parallel computation. These are illustrated in figures \ref{MapPattern} and \ref{MapReducePattern}. The Map pattern is used for executing tasks that have no dependence on each other. For example, if we need to fill a matrix with random numbers, the Map pattern can be used to fill the elements in parallel. The Map-Reduce pattern is essentially a Map pattern followed by a reduction. This can be used in cases where we need to find the maximum among a set of values. The Map process will return each value one by one and the reduction can be made to return the maximum of these values.\\
 
-The following patterns were used for the  compute intensive processes listed in section \ref{sssec:num2}:
+The following patterns were used for the compute intensive processes listed in section \ref{sssec:num2}:
 \begin{itemize}
 \item \textbf{Random Number filled Matrix:} Map pattern used for filling.
 \item \textbf{Weighted Point Selection:} Map pattern used for filling matrices. Output vector sorted in parallel. Evenly spaced points selected in parallel using Map pattern.
@@ -726,14 +727,52 @@ The following tasks were performed:
 
 
 \subsection{Experimental Results}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/Results.png}
+\caption{Experimental Results.}
+\label{Results}
+\end{figure}
+
+The experimental results have been summarized in figure \ref{Results}. Each test for the compute intensive processes listed in section  \ref{sssec:num2}, was run five times each in serial and parallel mode. The results were then averaged. The serial results were normalized and so they always show up as 100\%. The parallel results shown are the actual results divided by the serial results and then expressed as a percentage. For example, figure \ref{Results} shows that the parallel matrix operation took around 70\% of the serial time to complete. The parallel weighted point selection took more time than the serial mode as the parallel mode was not effective in reducing the run time. This demonstrates the fact that parallel programming although very much possible, can be a little complicated to implement \cite{nanz}.\\
+
+We can see that parallel computation, in most cases, is faster than the serial one as expected. However, parallel computation results in higher energy consumption. And that too in a shorter amount of time. This was a result that was totally not expected. It seems that when all cores of a multi-core processor are not being used, the energy consumption is reduced by some mechanism. At the time of running the experiment, the reason for the unexpected result was not known.
+
 \subsection{Threats to Validity}
+
+\textbf{Internal Threats:}
+The expected correlation between run time and energy consumption is the basis for this project. The rationale is that when only one core of a CPU is being utilized in serial mode, and the other cores are idle, the idle cores will still be using energy. This energy will be wasted as the idle cores are not productive. However, CPU manufacturers may have already planned for the eventuality that there will be times where only one core is used. The reason would be the usage of legacy software that has been programmed to run in parallel mode and also due to the fact that parallel programming is not trivial and may not be widely adopted.\\
+
+\textbf{External Threats:}
+Energy saving obtained by parallel programming on a desktop may not mean that the same would be true in the mobile computing platforms. The reason is that even though energy efficiency is important on all platforms, it is more so in the case of mobile platforms. Mobile CPUs, and possibly CPUs targeted at laptops, may already have architecture that is designed to maximize energy efficiency when only one CPU core is being used.
 
 \section{DISCUSSION}
 \subsection{Results Analysis}
 
+The results in figure \ref{Results} that show energy consumption increasing despite reduction is execution time, were very much unexpected. While I was looking for related work in the area of energy saving through use of parallel computing, I was finding studies that were in related areas, but not in this specific area that I was interested in. After getting the results, I suspected that my results were probably the result of the energy efficient characteristics of the Intel CPU used in my laptop. So I changed my search focus to energy efficiency and usage of parallel computing in CPUs and microprocessors. I came across the study by Cebri\' an et. al. \cite{cebrian} on the performance and energy impact of parallelization and vectorization techniques in modern microprocessors. This study provided me with the explanation for my results.\\
+
+As per the study \cite{cebrian}, Intel CPUs have these special built in power controls:
+
+\begin{itemize}
+\item Dynamic Voltage and Frequency Scaling (DVFS) is used to reduce power consumption. As dynamic power consumption in a CPU is related to the square of the voltage and clock frequency (see equation \ref{PowerConsumption}), the CPU can control the power and consequently the energy consumption by varying the voltage and/or the clock frequency.
+\item Clock gating is used to AND a clock signal with a control signal to turn clocking on/off. This technique is used so as not to clock unused cores.
+\item Intel\textquotesingle s Turbo Boost Technology uses per core power gating to disable idle cores and DVFS to overclock active cores. The power gating has the effect of shutting down unused cores. With unused cores shut down, the CPU energy consumption is reduced, and this enables the CPU to overclock its active core so that the computation runs faster while keeping the total energy consumption within limits.
+\item On Intel processors, vectorization using SIMD (Single Instruction Multiple Data) instructions results in better energy efficiency when compared to thread parallelism. However SIMD instructions are not portable and are specific to a processor.
+\end{itemize}
+
 \section{RELATED WORK}
 
+I could not find any related work on energy saving using parallel computing. I did find two studies that were somewhat related to my topic of interest:
+
+\begin{itemize}
+\item Woo et. al. suggested \cite{woo} having a mix of low power and full power consumption cores for energy efficiency
+\item Ribic et. al. \cite{ribic} developed Hermes for improving energy efficiency of work stealing applications
+\end{itemize}
+
 \section{CONCLUSION/SUMMARY}
+
+Overclocking a single core and shutting down unused cores through clock gating and power gating can result in better energy efficiency when only a single core is being used. When all cores are used, even though the execution is sped up when compared to the serial case, energy used is higher. Serial operation on a single core can execute at a higher clock speed due to Intel\textquotesingle s Turbo Boost Technology. In the case of parallel operation, sine all the cores are active, the CPU is forced to lower the clock speed for keeping energy usage within the limits that it can handle. This results in higher energy consumption in parallel mode.
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -865,12 +904,12 @@ The following tasks were performed:
 %\bibliography{IEEEabrv,../bib/paper}
 %
 % <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
+% set second argument of \begin to the numb\textbf{er of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
 \bibitem{whitney}
-Whitney, J., and P. Delforge. \emph{Data Center Efficiency Assessment?Scaling Up Energy Efficiency Across the Data Center Industry: Evaluating Key Drivers and Barriers.} NRDC and Anthesis, Rep. IP (2014): 14-08.
+Whitney, J., and P. Delforge. \emph{Data Center Efficiency Assessment - Scaling Up Energy Efficiency Across the Data Center Industry: Evaluating Key Drivers and Barriers.} NRDC and Anthesis, Rep. IP (2014): 14-08.
 
 \bibitem{woo}
 Woo, Dong Hyuk, and Hsien-Hsin S. Lee. \emph{Extending Amdahl's law for energy-efficient computing in the many-core era.} Computer 12 (2008): 24-31.
@@ -888,7 +927,7 @@ Woo, Dong Hyuk, and Hsien-Hsin S. Lee. \emph{Extending Amdahl's law for energy-e
  Wilson, G. V. (1995). \emph{Assessing and comparing the usability of parallel programming systems.} Computer Systems Research Institute.
 
 \bibitem{cebrian}
- Cebrián, Juan M., Lasse Natvig, and Jan Christian Meyer. \emph{Performance and energy impact of parallelization and vectorization techniques in modern microprocessors.} Computing 96.12 (2014): 1179-1193.
+ Cebri\' an, Juan M., Lasse Natvig, and Jan Christian Meyer. \emph{Performance and energy impact of parallelization and vectorization techniques in modern microprocessors.} Computing 96.12 (2014): 1179-1193.
  
 \end{thebibliography}
 
