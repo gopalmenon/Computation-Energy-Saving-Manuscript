@@ -395,11 +395,15 @@ Email: gopal.menon@aggiemail.usu.edu}
 \section{Introduction}
 
 \subsection{Data Center Energy Consumption}
+\label{sssec:num1}
 
-Data centers are the backbone of the modern economy \cite{whitney}, from the server roomsthat power small to medium-sized organizations, to the enterprise data centersthat support american corporations, to the server farms that run cloud computing services hosted by amazon, Facebook, Google, and others. However, the explosion of digital content, big data, e-commerce, and Internet traffic is also making data centers one of the fastest-growing users of electricity in developed countries, and one of the key drivers in the construction of new power plants in the united states.\\
+Data centers are the backbone of the modern economy \cite{whitney}, from the server rooms
+that power small to medium-sized organizations, to the enterprise data centers
+that support american corporations, to the server farms that run cloud computing services hosted by amazon, Facebook, Google, and others. However, the explosion of digital content, big data, e-commerce, and Internet traffic is also making data centers one of the fastest-growing users of electricity in developed countries, and one of the key drivers in the construction of new power plants in the united states.\\
 
 While most media and public attention focuses on the largest data centers that power so-called cloud computing operations - companies that provide web-based and other Internet services to consumers and businesses?these hyper-scale cloud computing data centers represent only a small fraction of data center energy consumption in the united states.\\
-In 2013, U.S. data centers consumed an estimated 91 billion kilowatt-hours of electricity. This is the equivalent annual output of 34 large (500-megawatt) coal-fired power plants, enough electricity to power all the households in New York City twice over. Data center electricity consumption is projected to increase to roughly 140 billion kilowatt-hours annually by 2020, the equivalent annual output of 50 power plants, costing american businesses \$13 billion per year in electricity bills and causing the emission of nearly 150 million metric tons of carbon pollution annually.
+
+In 2013, U.S. data centers consumed an estimated 91 billion kilowatt-hours of electricity. This is the equivalent annual output of 34 large (500-megawatt) coal-fired power plants, enough electricity to power all the households in New York City twice over. Data center electricity consumption is projected to increase to roughly 140 billion kilowatt-hours annually by 2020, the equivalent annual output of 50 power plants, costing american businesses \$13 billion per year in electricity bills and causing the emission of nearly 150 million metric tons of carbon pollution annually.
 
 \begin{figure}[!t]
 \centering
@@ -596,7 +600,7 @@ S_{\infty} \leq \frac{1}{f}
 \begin{figure}[!t]
 \centering
 \includegraphics[width=3.5in]{./figures/AmdahlsLawGraph.png}
-\caption{Amdahl?s Law: speedup. The scalability of parallelization is limited by the non-parallelizable (serial) portion of the workload. The serial fraction is the percentage of code that is not parallelized. \cite{mccool}}
+\caption{Amdahl\textquotesingle s Law: speedup. The scalability of parallelization is limited by the non-parallelizable (serial) portion of the workload. The serial fraction is the percentage of code that is not parallelized. \cite{mccool}}
 \label{AmdahlsLawGraph}
 \end{figure}
 
@@ -643,14 +647,17 @@ where the factor of 2 arises from having two cores. Using two cores running the 
 \end{tabular}
 \end{table}
 
-
-
 Another way to save power is to \enquote{race to sleep}. In this strategy, we try to get the computation done as fast as possible (with the lowest latency) so that all the cores can be put in a sleep state that draws very little power. This approach is attractive if a significant fraction of the wakeful power is fixed regardless of how many cores are running. Especially in mobile devices, parallelism can be used to reduce latency. This reduces the time the device, including its display and other components, is powered up. This not only improves the user experience but also reduces the overall power consumption for performing a user\textquotesingle s task: a win-win.
 
 \subsection{Contributions}
 
+As described above, the use of parallel programming can result in the use of energy savings. The aim of this project is to execute compute intensive tasks in both serial and parallel mode. The power consumption in both modes will be measured using a power profiling tool like pTopW. The measurement energy savings obtained by utilizing all the cores in a CPU will be used to identify any trends in run time versus energy savings. 
+
 \section{MOTIVATION AND BACKGROUND}
 \subsection{Motivation}
+
+As described in section \ref{sssec:num1}, the total energy consumption by data centers in the U.S. was 91 billion kWh in 2013. This is projected to increase to 140 billion kWh by 2020. This is a lot of energy that is being consumed. The energy consumption can be reduced by parallel programming and this will result in significant dollar amount savings and reduction in pollution levels and green house gases.  
+
 \subsection{Technologies Used}
 
 The Threading Building Blocks (TBB) programming model has been selected for the purpose of this project. TBB supports parallelism based on a tasking model. It provides the following features: 
@@ -663,11 +670,61 @@ The Threading Building Blocks (TBB) programming model has been selected for the 
 \item Efficient low-level primitives for atomic operations and memory allocation 
 \end{itemize}
 
-TBB is a library, not a language extension, and thus can be used with with any compiler supporting ISO C++. Because of that, TBB uses C++ features to implement its ?syntax.? TBB requires the use of function objects (also known as functors ) to specify blocks of code to run in parallel. These were somewhat tedious to specify in C++98. However, the C++11 addition of lambda expressions greatly simplifies specifying these blocks of code, so that is the style used in this book. TBB relies on templates and generic programming. Generic programming means that algorithms are written with the fewest possible assumptions about data structures, which maximizes potential for reuse. The C++ Standard Template Library (STL) is a good example of generic programming in which the interfaces are specified only by requirements on template types and work across a broad range of types that meet those requirements. TBB follows a similar philosophy. Like Cilk Plus, TBB is based on programming in terms of tasks, not threads. This allows it to reduce overhead and to more efficiently manage resources. As with Cilk Plus, TBB implements a common thread pool shared by all tasks and balances load via work-stealing. Use of this model allows for nested parallelism while avoiding the problem of over-subscription. The TBB implementation generally avoids global locks in its implementation. In particular, there is no global task queue and the memory allocator is lock free. This allows for much more scalability. As discussed later, global locks effectively serialize programs that could otherwise run in parallel. Individual components of TBB may also be used with other parallel programming models. It is common to see the TBB parallel memory allocator used with Cilk Plus or OpenMP programs, for example.\\
+TBB is a library, not a language extension, and thus can be used with with any compiler supporting ISO C++. Because of that, TBB uses C++ features to implement its \enquote{syntax}. TBB requires the use of function objects (also known as functors ) to specify blocks of code to run in parallel. These were somewhat tedious to specify in C++98. However, the C++11 addition of lambda expressions greatly simplifies specifying these blocks of code. TBB relies on templates and generic programming. Generic programming means that algorithms are written with the fewest possible assumptions about data structures, which maximizes potential for reuse. The C++ Standard Template Library (STL) is a good example of generic programming in which the interfaces are specified only by requirements on template types and work across a broad range of types that meet those requirements. TBB follows a similar philosophy. Like Cilk Plus, TBB is based on programming in terms of tasks, not threads. This allows it to reduce overhead and to more efficiently manage resources. As with Cilk Plus, TBB implements a common thread pool shared by all tasks and balances load via work-stealing. Use of this model allows for nested parallelism while avoiding the problem of over-subscription. The TBB implementation generally avoids global locks in its implementation. In particular, there is no global task queue and the memory allocator is lock free. This allows for much more scalability. As discussed later, global locks effectively serialize programs that could otherwise run in parallel. Individual components of TBB may also be used with other parallel programming models. It is common to see the TBB parallel memory allocator used with Cilk Plus or OpenMP programs, for example.\\
 
 \section{EXPERIMENTS}
 \subsection{Subjects}
+
+The following computational intensive processes were used to evaluate parallel programming energy savings \cite{wilson}.
+ 
+\begin{itemize}
+\item \textbf{Random number generation:} Fill a matrix with pseudo-random numbers based on the number of rows, number of columns and a random number generation seed passed in as parameters. 
+\item \textbf{Weighted point selection:} This converts a matrix of integers values into a vector of points based on the input matrix, a Boolean mask matrix showing which points are eligible for consideration, and the number of points to select. 
+\item \textbf{Outer product:} This converts a vector of coordinates into a matrix filled with the distance between any two points. 
+\item \textbf{Matrix-vector product:} Given a matrix $A$, a vector $V$, and an assumed solution $X$ to the equation $AX = V$, this calculates the actual product $AX = V'$ and then finds the magnitude of the error. 
+\end{itemize}
+
 \subsection{Experimental Setup}
+\label{sssec:num2}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/MapPattern.png}
+\caption{Map pattern. \cite{mccool}}
+\label{MapPattern}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{./figures/MapReducePattern.png}
+\caption{Map-Reduce pattern. \cite{mccool}}
+\label{MapReducePattern}
+\end{figure}
+
+The Map and Map-Reduce patterns were used for parallel computation. These are illustrated in figures \ref{MapPattern} and \ref{MapReducePattern}. The Map pattern is used for executing tasks that have no dependence on each other. For example, if we need to fill a matrix with random numbers, the Map pattern can be used to fill the elements in parallel. The Map-Reduce pattern is essentially a Map pattern followed by a reduction. This can be used in cases where we need to find the maximum among a set of values. The Map process will return each value one by one and the reduction can be made to return the maximum of these values.\\
+
+The following patterns were used for the  compute intensive processes listed in section \ref{sssec:num2}:
+\begin{itemize}
+\item \textbf{Random Number filled Matrix:} Map pattern used for filling.
+\item \textbf{Weighted Point Selection:} Map pattern used for filling matrices. Output vector sorted in parallel. Evenly spaced points selected in parallel using Map pattern.
+\item \textbf{Outer Product:} Map pattern for Inter point distances, diagonal values and origin to point distances. Map-Reduce pattern for max off diagonal distance.
+\item \textbf{Matrix Vector Product:} Map pattern for matrix filling and multiplication.
+\end{itemize}
+
+
+
+The following tasks were performed:
+
+\begin{itemize}
+\item Implement serial and parallel versions of the four computational processes
+\item Execute the processes for large computationally intensive operations
+\item Install power profiling tool pTopW
+\item Record execution times in serial and parallel modes 
+\item Estimate energy consumption in serial and parallel modes using profiling tool
+\item Find energy saving resulting from parallel computations
+\end{itemize}
+
+
 \subsection{Experimental Results}
 \subsection{Threats to Validity}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  18 DEC 2015 13:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  18 DEC 2015 16:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -521,16 +521,16 @@ Package gensymb Info: Using \textmu for \micro on input line 323.
 \makeMPintoPDFobject=\count133
 \everyMPtoPDFconversion=\toks28
 )
-Underfull \hbox (badness 10000) in paragraph at lines 399--402
+Underfull \hbox (badness 10000) in paragraph at lines 400--403
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--404
+Underfull \hbox (badness 10000) in paragraph at lines 404--405
 
  []
 
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 405.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 406.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
@@ -540,10 +540,10 @@ File: ./figures/DataCenterEfficiency.png Graphic file (type png)
 
 <use ./figures/DataCenterEfficiency.png>
 Package pdftex.def Info: ./figures/DataCenterEfficiency.png used on input line 
-409.
+410.
 (pdftex.def)             Requested size: 252.94499pt x 252.94022pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 409--410
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 410--411
  [][] 
  []
 
@@ -551,15 +551,15 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 409--410
 File: ./figures/DataCenterUsage.png Graphic file (type png)
 
 <use ./figures/DataCenterUsage.png>
-Package pdftex.def Info: ./figures/DataCenterUsage.png used on input line 419.
+Package pdftex.def Info: ./figures/DataCenterUsage.png used on input line 420.
 (pdftex.def)             Requested size: 252.94499pt x 142.3356pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 419--420
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 420--421
  [][] 
  []
 
 
-Overfull \hbox (5.79805pt too wide) in paragraph at lines 429--448
+Overfull \hbox (5.79805pt too wide) in paragraph at lines 430--449
  [][] 
  []
 
@@ -567,7 +567,7 @@ Overfull \hbox (5.79805pt too wide) in paragraph at lines 429--448
 
 
  <./figures/DataCenterEfficiency.png> <./figures/DataCenterUsage.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 454--455
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
 
  []
 
@@ -575,35 +575,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 454--455
 File: ./figures/ClockSpeed.png Graphic file (type png)
 
 <use ./figures/ClockSpeed.png>
-Package pdftex.def Info: ./figures/ClockSpeed.png used on input line 458.
+Package pdftex.def Info: ./figures/ClockSpeed.png used on input line 459.
 (pdftex.def)             Requested size: 252.94499pt x 146.14436pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 458--459
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 459--460
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--472
+Underfull \hbox (badness 10000) in paragraph at lines 472--473
 
  []
 
 
-Underfull \hbox (badness 6110) in paragraph at lines 475--476
+Underfull \hbox (badness 6110) in paragraph at lines 476--477
 \OT1/ptm/m/n/10 were se-rial ma-chines. Mean-while, com-puter ar-chi-tects
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 475--476
+Underfull \hbox (badness 10000) in paragraph at lines 476--477
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--478
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 479--481
+Underfull \hbox (badness 10000) in paragraph at lines 480--482
 
  []
 
@@ -612,10 +612,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 479--481
 File: ./figures/CpuPower.png Graphic file (type png)
 
 <use ./figures/CpuPower.png>
-Package pdftex.def Info: ./figures/CpuPower.png used on input line 484.
+Package pdftex.def Info: ./figures/CpuPower.png used on input line 485.
 (pdftex.def)             Requested size: 252.94499pt x 142.2097pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 484--485
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 485--486
  [][] 
  []
 
@@ -623,15 +623,15 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 484--485
 File: ./figures/CpuCores.png Graphic file (type png)
 
 <use ./figures/CpuCores.png>
-Package pdftex.def Info: ./figures/CpuCores.png used on input line 493.
+Package pdftex.def Info: ./figures/CpuCores.png used on input line 494.
 (pdftex.def)             Requested size: 252.94499pt x 142.2097pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 493--494
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 494--495
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 498--499
+Underfull \hbox (badness 10000) in paragraph at lines 499--500
 
  []
 
@@ -639,41 +639,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 498--499
 File: ./figures/DataWidth.png Graphic file (type png)
 
 <use ./figures/DataWidth.png>
-Package pdftex.def Info: ./figures/DataWidth.png used on input line 502.
+Package pdftex.def Info: ./figures/DataWidth.png used on input line 503.
 (pdftex.def)             Requested size: 252.94499pt x 209.95715pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 502--503
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 503--504
  [][] 
  []
 
 
-Underfull \hbox (badness 3503) in paragraph at lines 507--508
+Underfull \hbox (badness 3503) in paragraph at lines 508--509
 []\OT1/ptm/m/n/10 Additional hard-ware par-al-lelism will con-tinue to be
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 507--508
+Underfull \hbox (badness 10000) in paragraph at lines 508--509
 \OT1/ptm/m/n/10 com-plex and di-verse. Proper ab-strac-tion of par-al-lel
  []
 
 
-Underfull \hbox (badness 1859) in paragraph at lines 507--508
+Underfull \hbox (badness 1859) in paragraph at lines 508--509
 \OT1/ptm/m/n/10 pro-gram-ming meth-ods is nec-es-sary to be able to deal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 507--508
+Underfull \hbox (badness 10000) in paragraph at lines 508--509
 
  []
 
 [3 <./figures/CpuPower.png> <./figures/CpuCores.png> <./figures/DataWidth.png>]
 
-Underfull \hbox (badness 1540) in paragraph at lines 511--512
+Underfull \hbox (badness 1540) in paragraph at lines 512--513
 \OT1/ptm/m/n/10 pro-gram-ming prac-tices and tools to sup-port par-al-lelism.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 511--512
+Underfull \hbox (badness 10000) in paragraph at lines 512--513
 
  []
 
@@ -681,31 +681,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 511--512
 File: ./figures/ParallelModels.png Graphic file (type png)
 
 <use ./figures/ParallelModels.png>
-Package pdftex.def Info: ./figures/ParallelModels.png used on input line 521.
+Package pdftex.def Info: ./figures/ParallelModels.png used on input line 522.
 (pdftex.def)             Requested size: 252.94499pt x 86.4116pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 521--522
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 522--523
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 536--537
+Underfull \hbox (badness 10000) in paragraph at lines 537--538
 
  []
 
 
-Underfull \hbox (badness 2828) in paragraph at lines 546--547
+Underfull \hbox (badness 2828) in paragraph at lines 547--548
 \OT1/ptm/m/n/10 con-sid-ered op-ti-mal since we can se-ri-al-ize the par-al-lel
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 546--547
+Underfull \hbox (badness 10000) in paragraph at lines 547--548
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 551--552
+Underfull \hbox (badness 10000) in paragraph at lines 552--553
 
  []
 
@@ -713,10 +713,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 551--552
 File: ./figures/AmdahlsLaw.png Graphic file (type png)
 
 <use ./figures/AmdahlsLaw.png>
-Package pdftex.def Info: ./figures/AmdahlsLaw.png used on input line 572.
+Package pdftex.def Info: ./figures/AmdahlsLaw.png used on input line 573.
 (pdftex.def)             Requested size: 252.94499pt x 142.33281pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 572--573
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 573--574
  [][] 
  []
 
@@ -725,10 +725,10 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 572--573
 File: ./figures/AmdahlsLawGraph.png Graphic file (type png)
 
 <use ./figures/AmdahlsLawGraph.png>
-Package pdftex.def Info: ./figures/AmdahlsLawGraph.png used on input line 601.
+Package pdftex.def Info: ./figures/AmdahlsLawGraph.png used on input line 602.
 (pdftex.def)             Requested size: 252.94499pt x 142.2097pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 601--602
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 602--603
  [][] 
  []
 
@@ -736,14 +736,14 @@ Missing character: There is no × in font cmr10!
 Missing character: There is no × in font cmr10!
 Missing character: There is no × in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--617
+Underfull \hbox (badness 10000) in paragraph at lines 617--618
 
  []
 
 Missing character: There is no × in font cmr10!
 Missing character: There is no × in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 627--628
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
 
  []
 
@@ -751,11 +751,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 627--628
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [5 <./figures/AmdahlsLaw.png> <./figures/AmdahlsLawGraph.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 669--670
+Underfull \hbox (badness 10000) in paragraph at lines 673--674
 
  []
 
+<./figures/MapPattern.png, id=47, 650.43pt x 365.6862pt>
+File: ./figures/MapPattern.png Graphic file (type png)
+
+<use ./figures/MapPattern.png>
+Package pdftex.def Info: ./figures/MapPattern.png used on input line 692.
+(pdftex.def)             Requested size: 252.94499pt x 142.2097pt.
+
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 692--693
+ [][] 
+ []
+
+<./figures/MapReducePattern.png, id=48, 650.43pt x 365.6862pt>
+File: ./figures/MapReducePattern.png Graphic file (type png)
+
+<use ./figures/MapReducePattern.png>
+Package pdftex.def Info: ./figures/MapReducePattern.png used on input line 699.
+
+(pdftex.def)             Requested size: 252.94499pt x 142.2097pt.
+
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 699--700
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 704--705
+
+ []
+
+[6]
 Missing character: There is no á in font ptmr7t!
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -767,30 +797,31 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[6] (./bare_conf.aux) ) 
+[7 <./figures/MapPattern.png> <./figures/MapReducePattern.png>]
+(./bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 6186 strings out of 493117
- 92887 string characters out of 6135433
- 178498 words of memory out of 5000000
- 9540 multiletter control sequences out of 15000+600000
+ 6200 strings out of 493117
+ 93229 string characters out of 6135433
+ 179548 words of memory out of 5000000
+ 9552 multiletter control sequences out of 15000+600000
  39401 words of font info for 80 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 51i,9n,35p,1811b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base
-/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5
-.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (6 pages, 1077601 bytes).
+ 51i,9n,35p,1839b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.
+enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
+fb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texm
+f-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (7 pages, 1206313 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
